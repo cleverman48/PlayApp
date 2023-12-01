@@ -1,5 +1,4 @@
 import React from 'react';
-import { Input } from 'react-native-elements';
 import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFee } from '../redux/reducers/feeSlice';
@@ -53,28 +52,38 @@ const FeePage = () => {
       <View style={styles.btContainer}>
         <Text style={styles.textStyle} onPress={handleSetFee}>完了</Text>
       </View>
-      <View>
-
+      <View style={styles.panContainer}>
+        <View style={styles.tViewStyle}>
+          <Text style={styles.titleStyle}>プレイ金額</Text>
+          <TextInput
+            style={styles.inputStyle}
+            value={play.toString()}
+            onChangeText={playInputChange}
+            placeholder="Enter a value"
+            keyboardType="numeric"
+          />
+        </View>
+        <View style={styles.tViewStyle}>
+          <Text style={styles.titleStyle}>上限金額</Text>
+          <TextInput
+            style={styles.inputStyle}
+            value={max.toString()}
+            onChangeText={maxInputChange}
+            placeholder="Enter a value"
+            keyboardType="numeric"
+          />
+        </View>
+        <View style={styles.tViewStyle}>
+          <Text style={styles.titleStyle}>ナース金額</Text>
+          <TextInput
+            style={styles.inputStyle}
+            value={nurse.toString()}
+            onChangeText={nurseInputChange}
+            placeholder="Enter a value"
+            keyboardType="numeric"
+          />
+        </View>
       </View>
-      <TextInput
-        style={styles.inputStyle}
-        value={play.toString()}
-        onChangeText={playInputChange}
-        placeholder="Enter a value"
-        keyboardType="numeric"
-      />
-      <TextInput
-        value={max.toString()}
-        onChangeText={maxInputChange}
-        placeholder="Enter a value"
-        keyboardType="numeric"
-      />
-      <TextInput
-        value={nurse.toString()}
-        onChangeText={nurseInputChange}
-        placeholder="Enter a value"
-        keyboardType="numeric"
-      />
     </View>
   );
 };
@@ -82,10 +91,10 @@ const FeePage = () => {
 const styles = StyleSheet.create({
   panContainer: {
     width: '100%',
-    height: '100%',
+    height: 500,
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     padding: 10,
   },
   btContainer: {
@@ -115,8 +124,16 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     color: 'black',
     paddingTop: 5,
-    paddingRight: 5,
+    marginRight: 5,
     alignSelf: 'flex-end',
+  },
+  tViewStyle: {
+    marginTop: 50,
+    marginBottom: 50,
+  },
+  titleStyle: {
+    marginBottom: 5,
+    fontSize: 15,
   }
 });
 

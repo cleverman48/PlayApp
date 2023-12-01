@@ -58,7 +58,7 @@ function FirstPage() {
                             <Text style={styles.textStyle} onPress={() => handleSetPage('inputPage')}>一刀流</Text>
                         </View>
                         <View style={styles.thirdContainer}>
-                            <Text style={styles.textStyle} onPress={() => handleSetPage('resultPage')}>二刀流</Text>
+                            <Text style={styles.textStyle} onPress={() => handleSetPage('inputPage')}>二刀流</Text>
                         </View>
                     </View>
                 );
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         width: '100%',
         height: 40,
+        color: 'black',
     }
 });
 
