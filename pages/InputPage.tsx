@@ -29,7 +29,7 @@ const InputPage = () => {
       </View>
       <View style={styles.panContainer}>
         <View style={styles.tViewStyle}>
-          <Text style={styles.ruleStyle} onPress={handleSetPage3}>法則シート</Text>
+          <Text style={styles.ruleStyle} onPress={handleSetPage3}>データ</Text>
         </View>
         <View style={styles.tViewStyle}>
           <Text style={styles.inputStyle}>
