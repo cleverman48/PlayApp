@@ -1,7 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Alert } from "react-native";
 
-const convertArray = (inputArray: any) => {
+const showAlert = () => {
+	Alert.alert(
+		'注意',
+		'もうクリックできません!',
+		[
+			{
+				text: '確認',
+				style: 'default',
+			},
+		],
+	);
+}
+
+export const convertArray = (inputArray: any) => {
 	let newArray = new Array;
 	inputArray.map((row: any) => {
 		if ((row[0] === "green" && row[1] == true) || (row[0] === "blue" && row[1] == false) == true) {
@@ -32,12 +45,14 @@ const convertMatrix = (inputArray: any, rows: number, cols: number) => {
 	for (let i = 1; i < inputArrayLen; i++) {
 		if (inputArray[i - 1] === inputArray[i]) {
 			if (x === 4) {
+				showAlert();
 				break;
 			}
 			x++;
 		}
 		else {
 			if (y === 11) {
+				showAlert();
 				break;
 			}
 			y++;
@@ -45,8 +60,6 @@ const convertMatrix = (inputArray: any, rows: number, cols: number) => {
 		}
 		outputMatrix[x][y] = inputArray[i]
 	}
-
-	console.log(outputMatrix);
 	return outputMatrix;
 };
 

@@ -63,9 +63,11 @@ const InputPage = () => {
       </View>
       <Table data={matrix} />
       <View style={styles.panContainer}>
-        <View style={styles.tViewStyle}>
-          <Text style={styles.ruleStyle} onPress={handleSetPage3}>データ</Text>
-        </View>
+        <TouchableOpacity onPress={handleSetPage3}>
+          <View style={styles.tViewStyle}>
+            <Text style={styles.ruleStyle}>データ</Text>
+          </View>
+        </TouchableOpacity>
         <View style={styles.tViewStyle}>
           <Text style={styles.inputStyle}>
             {play.toString()}
@@ -74,7 +76,7 @@ const InputPage = () => {
         <View style={styles.tViewStyle}>
           {randomColor ? (
             <Text style={[styles.nextCol, { backgroundColor: randomColor }]}>
-              
+
             </Text>
           ) : (
             <Text style={styles.nextCol}>
