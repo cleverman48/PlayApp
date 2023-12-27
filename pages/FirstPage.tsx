@@ -54,7 +54,7 @@ function FirstPage() {
                     <View style={backgroundStyle}>
                         <TouchableOpacity onPress={() => handleSetPage('settingPage')}>
                             <View style={styles.firstContainer}>
-                                <Text style={styles.textStyle}>設定1</Text>
+                                <Text style={styles.textStyle}>設定</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => handleSetPage('inputPage')}>
@@ -71,19 +71,19 @@ function FirstPage() {
                 );
             case "settingPage":
                 return (
-                    <View style={backgroundStyle}>
+                    <View>
                         <FeePage />
                     </View>
                 );
             case "inputPage":
                 return (
-                    <View style={backgroundStyle}>
+                    <View>
                         <InputPage />
                     </View>
                 );
             case "resultPage":
                 return (
-                    <View style={backgroundStyle}>
+                    <View>
                         <ResultPage />
                     </View>
                 );
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
     firstContainer: {
         marginTop: 70,
-        width: '70%',
+        width: '80%',
         height: 50,
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -119,20 +119,24 @@ const styles = StyleSheet.create({
     secondContainer: {
         marginTop: 100,
         width: '80%',
-        height: 40,
+        height: 50,
         marginLeft: 'auto',
         marginRight: 'auto',
         backgroundColor: '#bc7a73',
         borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
     },
     thirdContainer: {
         marginTop: 100,
         width: '80%',
-        height: 40,
+        height: 50,
         marginLeft: 'auto',
         marginRight: 'auto',
         backgroundColor: '#73b2bc',
         borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
     },
     textStyle: {
         textAlign: 'center',

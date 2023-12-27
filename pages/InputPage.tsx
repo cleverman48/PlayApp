@@ -56,10 +56,12 @@ const InputPage = () => {
   };
 
   return (
-    <View style={{ backgroundColor: 'white' }} >
+    <View>
       <View style={styles.btContainer}>
         <Text style={styles.calStyle} >損益計算</Text>
-        <Text style={styles.backStyle} onPress={handleSetPage0}>終了</Text>
+        <TouchableOpacity onPress={handleSetPage0}>
+          <Text style={styles.backStyle}>終了</Text>
+        </TouchableOpacity>
       </View>
       <Table data={matrix} />
       <View style={styles.panContainer}>
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 80,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'black',
     fontSize: 30,
     textAlign: 'center',
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     width: 150,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     backgroundColor: 'yellow',
     color: 'black',
     borderRadius: 10,
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'black',
     paddingTop: 5,
     marginRight: 5,
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f00',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'white',
     paddingTop: 5,
     marginLeft: 5,
@@ -186,12 +188,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
     fontWeight: 'bold',
-    width: 100,
+    width: 150,
     height: 40,
     backgroundColor: '#2f99b1',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'black',
     color: 'white',
     paddingTop: 7,
   },
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
   },
   tViewStyle: {
     marginTop: 15,
