@@ -14,6 +14,7 @@ import {
     useColorScheme,
     View,
     Button,
+    TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -51,32 +52,38 @@ function FirstPage() {
             case "firstPage":
                 return (
                     <View style={backgroundStyle}>
-                        <View style={styles.firstContainer}>
-                            <Text style={styles.textStyle} onPress={() => handleSetPage('settingPage')}>設定1</Text>
-                        </View>
-                        <View style={styles.secondContainer}>
-                            <Text style={styles.textStyle} onPress={() => handleSetPage('inputPage')}>一刀流</Text>
-                        </View>
-                        <View style={styles.thirdContainer}>
-                            <Text style={styles.textStyle} onPress={() => handleSetPage('inputPage')}>二刀流</Text>
-                        </View>
+                        <TouchableOpacity onPress={() => handleSetPage('settingPage')}>
+                            <View style={styles.firstContainer}>
+                                <Text style={styles.textStyle}>設定</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleSetPage('inputPage')}>
+                            <View style={styles.secondContainer}>
+                                <Text style={styles.textStyle}>一刀流</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleSetPage('inputPage')}>
+                            <View style={styles.thirdContainer}>
+                                <Text style={styles.textStyle}>二刀流</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 );
             case "settingPage":
                 return (
-                    <View style={backgroundStyle}>
+                    <View>
                         <FeePage />
                     </View>
                 );
             case "inputPage":
                 return (
-                    <View style={backgroundStyle}>
+                    <View>
                         <InputPage />
                     </View>
                 );
             case "resultPage":
                 return (
-                    <View style={backgroundStyle}>
+                    <View>
                         <ResultPage />
                     </View>
                 );
@@ -97,9 +104,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
     },
-    firstContainer: {       
+    firstContainer: {
         marginTop: 70,
-        width: '70%',
+        width: '80%',
         height: 50,
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -109,23 +116,27 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    secondContainer: {        
+    secondContainer: {
         marginTop: 100,
         width: '80%',
-        height: 40,
+        height: 50,
         marginLeft: 'auto',
         marginRight: 'auto',
         backgroundColor: '#bc7a73',
         borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
     },
     thirdContainer: {
         marginTop: 100,
         width: '80%',
-        height: 40,
+        height: 50,
         marginLeft: 'auto',
         marginRight: 'auto',
         backgroundColor: '#73b2bc',
         borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
     },
     textStyle: {
         textAlign: 'center',

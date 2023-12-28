@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFee } from '../redux/reducers/feeSlice';
 import { setPage } from '../redux/reducers/pageSlice';
 import { RootState } from '../redux/store';
+import Sheet from '../components/Sheet';
 
 const ResultPage = () => {
   const { playFee, maxFee, nurseFee } = useSelector((state: RootState) => state.fee);
@@ -12,6 +13,7 @@ const ResultPage = () => {
   let max: number = maxFee;
   let nurse: number = nurseFee;
 
+  const matrix = useSelector((state: RootState) => state.matrix.data);
 
   const handleSetPage0 = () => {
     dispatch(setPage("firstPage"));
@@ -25,13 +27,14 @@ const ResultPage = () => {
       <View style={styles.tViewStyle}>
         <Text style={styles.ruleStyle} >法則シート</Text>
       </View>
-      <View style={styles.table}>
-      </View>
-      <View style={styles.table}>
-      </View>
-      <View style={styles.tViewStyle}>
-        <Text style={styles.playStyle} onPress={handleSetPage2}>プレイ画面</Text>
-      </View>
+      <Sheet data={matrix} />
+      <View style={styles.h_100}></View>
+      <Sheet data={matrix} />
+      <TouchableOpacity onPress={handleSetPage2}>
+        <View style={styles.tViewStyle}>
+          <Text style={styles.playStyle}>プレイ画面</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2f99b1',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'white',
     paddingTop: 7,
   },
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#94a44c',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'white',
     paddingTop: 7,
   },
@@ -93,6 +96,9 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
   },
+  h_100: {
+    height: 100
+  }
 });
 
 export default ResultPage;

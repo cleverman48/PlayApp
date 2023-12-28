@@ -1,12 +1,24 @@
-import React from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFee } from '../redux/reducers/feeSlice';
 import { setPage } from '../redux/reducers/pageSlice';
 import { RootState } from '../redux/store';
 
+import Table from '../components/Table';
+import { updateData } from '../redux/reducers/matrixSlice';
+
+const getRandomColor = () => {
+  const colors = ['green', 'blue']; // Blue and Green colors
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+};
+
 const InputPage = () => {
   const { playFee, maxFee, nurseFee } = useSelector((state: RootState) => state.fee);
+
+  const matrix = useSelector((state: RootState) => state.matrix.data);
+
   const dispatch = useDispatch();
   let play: number = playFee;
   let max: number = maxFee;
@@ -19,31 +31,68 @@ const InputPage = () => {
     dispatch(setPage("resultPage"));
   };
 
+  const [randomColor, setRandomColor] = useState<string>('');
+
+  const handleButtonClick = (isGreen: boolean) => {
+
+    const newRandomColor = getRandomColor();
+    setRandomColor(newRandomColor);
+
+    const color = isGreen ? 'green' : 'blue';
+
+    let isMatch = undefined;
+
+    if (color === newRandomColor) {
+      isMatch = true;
+    } else {
+      isMatch = false;
+    }
+
+    const newRow = [color, isMatch];
+
+    const newMatrix = [...matrix, newRow];
+
+    dispatch(updateData(newMatrix));
+  };
+
   return (
-    <View style={{backgroundColor: 'white',}} >
+    <View>
       <View style={styles.btContainer}>
         <Text style={styles.calStyle} >損益計算</Text>
-        <Text style={styles.backStyle} onPress={handleSetPage0}>終了</Text>
+        <TouchableOpacity onPress={handleSetPage0}>
+          <Text style={styles.backStyle}>終了</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.table}>
-      </View>
+      <Table data={matrix} />
       <View style={styles.panContainer}>
-        <View style={styles.tViewStyle}>
-          <Text style={styles.ruleStyle} onPress={handleSetPage3}>データ</Text>
-        </View>
+        <TouchableOpacity onPress={handleSetPage3}>
+          <View style={styles.tViewStyle}>
+            <Text style={styles.ruleStyle}>データ</Text>
+          </View>
+        </TouchableOpacity>
         <View style={styles.tViewStyle}>
           <Text style={styles.inputStyle}>
             {play.toString()}
           </Text>
         </View>
         <View style={styles.tViewStyle}>
-          <Text style={styles.nextCol}>
-            ?
-          </Text>
+          {randomColor ? (
+            <Text style={[styles.nextCol, { backgroundColor: randomColor }]}>
+
+            </Text>
+          ) : (
+            <Text style={styles.nextCol}>
+              ?
+            </Text>
+          )}
         </View>
         <View style={styles.colPan}>
-          <View style={styles.gBt}></View>
-          <View style={styles.bBt}></View>
+          <TouchableOpacity onPress={() => handleButtonClick(true)}>
+            <View style={styles.gBt}></View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleButtonClick(false)}>
+            <View style={styles.bBt}></View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -77,23 +126,23 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   gBt: {
-    width:80,
-    height:80,
+    width: 80,
+    height: 80,
     borderRadius: 80,
     backgroundColor: 'green',
   },
   bBt: {
-    width:80,
-    height:80,
+    width: 80,
+    height: 80,
     borderRadius: 80,
     backgroundColor: 'blue',
   },
   nextCol: {
-    width:80,
-    height:80,
+    width: 80,
+    height: 80,
     borderRadius: 80,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'black',
     fontSize: 30,
     textAlign: 'center',
@@ -102,7 +151,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     width: 150,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     backgroundColor: 'yellow',
     color: 'black',
     borderRadius: 10,
@@ -117,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'black',
     paddingTop: 5,
     marginRight: 5,
@@ -130,7 +179,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f00',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'white',
     paddingTop: 5,
     marginLeft: 5,
@@ -139,12 +188,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
     fontWeight: 'bold',
-    width: 100,
+    width: 150,
     height: 40,
     backgroundColor: '#2f99b1',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'black',
     color: 'white',
     paddingTop: 7,
   },
@@ -154,7 +201,7 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
   },
   tViewStyle: {
     marginTop: 15,

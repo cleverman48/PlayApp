@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFee } from '../redux/reducers/feeSlice';
 import { setPage } from '../redux/reducers/pageSlice';
@@ -48,9 +48,11 @@ const FeePage = () => {
   };
 
   return (
-    <View >
+    <View>
       <View style={styles.btContainer}>
-        <Text style={styles.textStyle} onPress={handleSetFee}>完了</Text>
+        <TouchableOpacity onPress={handleSetFee}>
+          <Text style={styles.textStyle}>完了</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.panContainer}>
         <View style={styles.tViewStyle}>
@@ -105,9 +107,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   inputStyle: {
-    width: 200,
+    width: 300,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     backgroundColor: '#fff',
     borderRadius: 10,
     textAlign: 'center',
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#999',
     color: 'black',
     paddingTop: 5,
     marginRight: 5,
